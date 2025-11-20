@@ -1,11 +1,5 @@
-JOB fastqc fastqc1.submit
-VARS fastqc RUN="${run}"
-
-JOB trim trimmomatic.submit
-VARS trim RUN="${run}"
-
-JOB fastqc2 fastqc2.submit
-VARS fastqc2 RUN="${run}"
+JOB fastp fastp.submit
+VARS fastp RUN="${run}"
 
 JOB bwa	bwaMEM.submit
 VARS bwa RUN="${run}"
@@ -25,13 +19,15 @@ JOB count htseq.submit
 VARS count RUN="${run}"
 VARS count ANNOT_GTF="${annot_gtf}"
 
-JOB cleanup dummy.submit NOOP
-SCRIPT POST cleanup /bin/rm /staging/groups/pepperell_group/Mtb_RNAseq/HTSeqCounts/Results/${run}.sort.bam.gz 
+JOB picard picard.submit
+VARS picard RUN="${run}"
 
-PARENT fastqc CHILD trim
-PARENT trim CHILD fastqc2
-PARENT fastqc2 CHILD bwa
+JOB dupRADAR dupRADAR.submit
+VARS dupRADAR RUN="${run}"
+VARS dupRADAR ANNOT_GTF="${annot_gtf}"
+
+PARENT fastp CHILD bwa
 PARENT bwa CHILD view
 PARENT view CHILD sort
-PARENT sort CHILD qc count
-PARENT qc count CHILD cleanup
+PARENT sort CHILD picard qc count
+PARENT picard CHILD dupRADAR

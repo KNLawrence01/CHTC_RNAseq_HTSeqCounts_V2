@@ -1,0 +1,22 @@
+universe = vanilla
+container_image = file:///staging/knlawrence/picard.sif
+executable = picard.sh
+arguments = "$(RUN)"
+
+#output = picard_$(SAMPLE).out
+#error = picard_$(SAMPLE).err
+#log = picard_$(SAMPLE).log
+
+# Rules to transfer and transferring files
+transfer_executable = TRUE
+when_to_transfer_output = IF_NEEDED
+transfer_output_files = ""
+
+
+# Set requirements
+Requirements = (Target.HasCHTCStaging == true)
+request_cpus = 1
+request_memory = 15GB
+request_disk = 35GB
+
+queue

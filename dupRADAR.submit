@@ -1,0 +1,22 @@
+universe = vanilla
+container_image = file:///staging/knlawrence/dupRADAR.sif
+executable = run_dupRADAR.sh
+arguments = "$(RUN) $(ANNOT_GTF)"
+
+log = dupRADAR$(RUN).log
+output= dupRADAR_$(RUN).out
+error = dupRADAR_$(RUN).err
+
+# Rules to transfer and transerring files
+transfer_executable = TRUE
+should_transfer_files = IF_NEEDED
+when_to_transfer_output = ON_EXIT
+transfer_output_files = ""
+
+# Set requirements
+Requirements = (Target.HasCHTCStaging == true)
+request_cpus = 4
+request_memory = 10GB
+request_disk = 10GB
+
+queue

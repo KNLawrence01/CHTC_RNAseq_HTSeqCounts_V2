@@ -1,22 +1,20 @@
 # Give Docker and argument and then set output, error, and log.
 universe = Docker
-docker_image = staphb/trimmomatic
-arguments = "$(RUN)"
-executable = trimmomatic.sh
+docker_image = staphb/fastp
+executable = fastp.sh
 
-#output = trimmomatic_$(RUN).out
-#error = trimmomatic_$(RUN).err
-#log = trimmomatic_$(RUN).log
+#output = OUT/fastp.out
+#error = ERR/fastp.err
+#log = LOGfastp.log
 
 # Rules to transfer and transferring files
 transfer_executable = TRUE
 should_transfer_files = IF_NEEDED
-transfer_output_files = ""
 
 # Resource request and Queue job
 requirements = (Target.HasCHTCStaging==TRUE)
-request_cpus = 4
-request_memory = 30GB
-request_disk = 20GB
+request_cpus = 1
+request_memory = 2GB
+request_disk = 10GB
 
 queue
