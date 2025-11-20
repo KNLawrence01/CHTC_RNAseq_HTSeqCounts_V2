@@ -1,39 +1,39 @@
-# Pepperell_Lab_RNAseq_HTSeqCounts_Pipeline
-### Updated versions of condor scripts for work on CHTC for RNAseq using Docker containers. 
+# Pepperell_Lab_RNAseq_HTSeqCounts_Pipeline_Version2
+### Updated version of CHTC_RNAseq_HTSeqCounts pipeline
 
-This repository contains an RNA-Seq analysis pipeline designed to process sequencing data through several stages on CHTC, from quality control to gene expression quantification.
+This repository contains an RNA-Seq analysis pipeline designed to process sequencing data through several stages on CHTC, from quality control to gene expression quantification. This pipeline replaced fastqc1 -> trimmomatic -> fastqc2 with fastp, added indexing sorted BAMs, and added Picard -> DupRADAR to analyse duplication rates within our RNA-Seq data.
 
 ## Pipeline Overview
 
 The pipeline consists of the following stages:
 
-1. **FastQC1:**
+1. **fastp:**
    - Initial quality check of raw reads.
-   - Docker image: `staphb/fastqc`
-
-2. **Trim:**
    - Adapter and quality trimming of reads.
-   - Docker image: `staphb/trimmomatic`
+   - Docker image: `staphb/fastp`
 
-3. **FastQC2:**
-   - Quality check of trimmed reads.
-   - Docker image: `staphb/fastqc`
-
-4. **BWA:**
+2. **BWA:**
    - Alignment of reads to the reference genome.
    - Docker image: `staphb/bwa`
 
-5. **Samtools View:**
+3. **Samtools View:**
    - Conversion of SAM to BAM format.
    - Docker image: `staphb/samtools`
 
-6. **Samtools Sort:**
+4. **Samtools Sort:**
    - Sorting of BAM files.
+   - Indexing of Sorted BAM files.
    - Docker image: `staphb/samtools`
 
-7. **HTSeq & Qualimap:**
-   - Gene expression quantification and quality control of BAM files.
-   - Docker images: `fischuu/htseq` and `pegi3s/qualimap`
+5. **Picard, HTSeqCounts, & Qualimap:**
+   - Picard: Creates duplicate-marked BAM.
+   - HTSeqCounts: Gene expression quantification.
+   - Qualimap: Quality Control of BAM files.
+   - Docker images: `picard.sif`, `fischuu/htseq`, and `pegi3s/qualimap` 
+
+6. **dupRadar:**
+   - Quality check of duplication rates in RNAseq data.
+   - Apptainer: `dupRADAR.sif`
 
 8. **MultiQC:**
    - Final quality control of all raw FASTA files, trimmed FASTA files, and BAM files.
@@ -121,6 +121,4 @@ For more detailed information, refer to the [HTCondor Manual](https://htcondor.r
 * DAG Recovery: https://htcondor.readthedocs.io/en/23.0/automated-workflows/dagman-resubmit-failed.html
 
 ## Visualizations
-![RNAseq_Pipeline_HTseqCounts](https://github.com/user-attachments/assets/dc06e571-0849-410a-b08b-f2f422037603)
-![CHTC_RNAseqData_Organization](https://github.com/user-attachments/assets/4eb7d4fd-3bb1-4de0-9cb5-383f97328e18)
-![RNAseqOnCHTC (4)](https://github.com/pepperell-lab/RNASeq_CHTC/assets/108096710/83429397-70bc-45d0-ad0c-f46b9e433ba9)
+<img width="3600" height="2100" alt="Updated_RNAseq_Pipeline" src="https://github.com/user-attachments/assets/a47e9f3c-4f5c-48a9-9ef4-a848c7b388d0" />
