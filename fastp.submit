@@ -2,14 +2,16 @@
 universe = Docker
 docker_image = staphb/fastp
 executable = fastp.sh
+arguments = "$(RUN)"
 
-#output = OUT/fastp.out
-#error = ERR/fastp.err
-#log = LOGfastp.log
+output = OUT/fastp_$(RUN).out
+error = ERR/fastp_$(RUN).err
+log = LOG/fastp_$(RUN).log
 
 # Rules to transfer and transferring files
 transfer_executable = TRUE
 should_transfer_files = IF_NEEDED
+transfer_output_files = ""
 
 # Resource request and Queue job
 requirements = (Target.HasCHTCStaging==TRUE)

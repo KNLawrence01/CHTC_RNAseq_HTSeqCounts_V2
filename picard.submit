@@ -3,13 +3,13 @@ container_image = file:///staging/knlawrence/picard.sif
 executable = picard.sh
 arguments = "$(RUN)"
 
-#output = picard_$(SAMPLE).out
-#error = picard_$(SAMPLE).err
-#log = picard_$(SAMPLE).log
+output = OUT/picard_$(RUN).out
+error = ERR/picard_$(RUN).err
+log = LOG/picard_$(RUN).log
 
 # Rules to transfer and transferring files
 transfer_executable = TRUE
-when_to_transfer_output = IF_NEEDED
+should_transfer_files = IF_NEEDED
 transfer_output_files = ""
 
 
