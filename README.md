@@ -111,7 +111,7 @@ To resume the job, submit the rescue DAG file:
 condor_submit_dag input_topLevel.dag
 ```
 
-This command will restart the DAG job from the last successful checkpoint, skipping the jobs that have already completed successfully(if rescue file is not deleted).
+This command will restart the DAG job from the last successful checkpoint, skipping the jobs that have already completed successfully(if the rescue file is not deleted).
 
 
 ---
@@ -121,4 +121,5 @@ For more detailed information, refer to the [HTCondor Manual](https://htcondor.r
 * DAG Recovery: https://htcondor.readthedocs.io/en/23.0/automated-workflows/dagman-resubmit-failed.html
 
 ## Visualizations
-<img width="3600" height="2100" alt="Updated_RNAseq_Pipeline" src="https://github.com/user-attachments/assets/a47e9f3c-4f5c-48a9-9ef4-a848c7b388d0" />
+<img width="4500" height="3000" alt="CHTC_RNAseq_HTSeqCounts_V2" src="https://github.com/user-attachments/assets/11e3772c-0511-4c9e-baa3-2379a6edec5e" />
+
