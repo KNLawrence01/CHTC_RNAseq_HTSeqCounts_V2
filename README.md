@@ -1,4 +1,4 @@
-# Pepperell_Lab_RNAseq_HTSeqCounts_Pipeline 
+# Pepperell_Lab_RNAseq_HTSeqCounts_Pipeline_Version2
 ### Updated version of CHTC_RNAseq_HTSeqCounts pipeline
 
 This repository contains an RNA-Seq analysis pipeline designed to process sequencing data through several stages on CHTC, from quality control to gene expression quantification. This pipeline replaced fastqc1 -> trimmomatic -> fastqc2 with fastp, added indexing sorted BAMs, and added Picard -> DupRADAR to analyse duplication rates within our RNA-Seq data.
